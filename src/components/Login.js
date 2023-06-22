@@ -19,6 +19,7 @@ export default class Login extends Component {
   };
 
   render() {
+    const { history } = this.props;
     return (
       <div>
         <input
@@ -34,6 +35,7 @@ export default class Login extends Component {
           name="email"
         />
         <button data-testid="btn-play" disabled={ !this.buttonDisabled() }>Play</button>
+        <button onClick={ () => history.push('/settings') } data-testid="btn-settings">Settings</button>
       </div>
     );
   }
