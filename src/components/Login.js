@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Login extends Component {
   state = {
@@ -35,8 +36,18 @@ export default class Login extends Component {
           name="email"
         />
         <button data-testid="btn-play" disabled={ !this.buttonDisabled() }>Play</button>
-        <button onClick={ () => history.push('/settings') } data-testid="btn-settings">Settings</button>
+        <button
+          onClick={ () => history.push('/settings') }
+          data-testid="btn-settings"
+        >
+          Settings
+
+        </button>
       </div>
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape.isRequired,
+};
