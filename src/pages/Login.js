@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     name: '',
     email: '',
@@ -51,3 +52,5 @@ export default class Login extends Component {
 Login.propTypes = {
   history: PropTypes.shape.isRequired,
 };
+
+export default connect()(Login);
