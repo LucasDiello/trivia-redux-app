@@ -23,7 +23,7 @@ const loginReducer = (state = INITIAL_STATE, action) => {
   case SCORE_SOM:
     return {
       ...state,
-      score: Number(state.score) + Number(action.score),
+      score: state.score + action.score,
     };
   default:
     return state;

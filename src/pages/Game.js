@@ -52,8 +52,6 @@ class Game extends Component {
     const { resultsIndex, seconds } = this.state;
     const { questions, dispatch } = this.props;
     const { results } = questions;
-    console.log(results[resultsIndex]);
-    console.log(results[resultsIndex].difficulty);
     if (results[resultsIndex].correct_answer === target.value) {
       dispatch(calculaScore(
         Number(seconds),
@@ -71,13 +69,29 @@ class Game extends Component {
     }, this.scoreSom(target));
   };
 
-  // Função para embaralhar as respostas e colocar no state
+  nextQuestion = () => {
+    const limiteIndex = 4;
+    const { resultsIndex } = this.state;
+    if (resultsIndex === limiteIndex) {
+      const { history } = this.props;
+      history.push('/feedback');
+    }
+    this.setState((prev) => ({
+      ...prev,
+      correct: '',
+      incorrect: '',
+      seconds: 30,
+      shuffledAnswers: [],
+      disabled: false,
+      resultsIndex: (prev.resultsIndex < limiteIndex) ? prev.resultsIndex + 1 : 0,
+    }), () => this.shuffleAnswers());
+  };
 
+  // Função para embaralhar as respostas e colocar no state
   shuffleAnswers() {
     const { resultsIndex } = this.state;
     const { questions } = this.props;
     const { results } = questions;
-
     if (results && results.length > 0) {
       const firstQuestion = results[resultsIndex];
 
@@ -108,8 +122,10 @@ class Game extends Component {
   render() {
     const { questions, player: { name, score, gravatarEmail } } = this.props;
     const { results } = questions;
-    const { correct, incorrect, seconds, shuffledAnswers, disabled } = this.state;
+    const { correct, incorrect, seconds,
+      shuffledAnswers, disabled, resultsIndex } = this.state;
     const TOKEN_EXPIRED = 3;
+    const inicialSeconds = 30;
 
     // condição para verificar se o token expirou
 
@@ -123,7 +139,7 @@ class Game extends Component {
 
     let content = null;
     if (results && results.length > 0) {
-      const firstQuestion = results[0];
+      const firstQuestion = results[resultsIndex];
 
       content = (
         <>
@@ -164,8 +180,14 @@ class Game extends Component {
         />
         <p data-testid="header-player-name">{name}</p>
         <p data-testid="header-score">{score}</p>
-        {content}
-        {correct && <button data-testid="btn-next">Next</button>}
+        {(seconds <= inicialSeconds) && content}
+        {correct
+        && <button
+          data-testid="btn-next"
+          onClick={ this.nextQuestion }
+        >
+          Next
+        </button>}
       </header>
     );
   }
