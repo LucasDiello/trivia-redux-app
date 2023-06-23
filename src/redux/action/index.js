@@ -5,6 +5,7 @@ export const EMAIL_LOGIN = 'EMAIL_LOGIN';
 export const REQUEST = 'REQUEST';
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const LOGOUT = 'LOGOUT';
+export const SCORE_SOM = 'SCORE_SOM';
 
 export const nameLogin = (name) => ({
   type: NAME_LOGIN,
@@ -33,6 +34,11 @@ export const logout = () => {
     type: LOGOUT,
   };
 };
+
+export const scoreSom = (score) => ({
+  type: SCORE_SOM,
+  score,
+});
 
 // função gravatar
 
@@ -63,4 +69,23 @@ export const fetchToken = () => (dispatch) => {
       localStorage.setItem('token', data.token);
       dispatch(requestToken(data.token));
     });
+};
+
+export const calculaScore = (seconds, difficulty) => (dispatch) => {
+  let valueScore = 0;
+  const valorAcerto = 10;
+  const valorHard = 3;
+  const valorMedium = 2;
+  const valorEasy = 1;
+
+  if (difficulty === 'hard') {
+    valueScore += valorAcerto + (valorHard * seconds);
+    dispatch(scoreSom(valueScore));
+  } else if (difficulty === 'medium') {
+    valueScore += valorAcerto + (valorMedium * seconds);
+    dispatch(scoreSom(valueScore));
+  } else {
+    valueScore += valorAcerto + (valorEasy * seconds);
+    dispatch(scoreSom(valueScore));
+  }
 };

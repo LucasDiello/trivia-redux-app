@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchGravatar, fetchQuestions, logout } from '../redux/action';
+import { calculaScore, fetchGravatar, fetchQuestions, logout } from '../redux/action';
 
 class Game extends Component {
   state = {
@@ -10,6 +10,7 @@ class Game extends Component {
     seconds: 30,
     shuffledAnswers: [],
     disabled: false,
+    resultsIndex: 0,
   };
 
   // Caso queiram saber mais sobre o timer https://stackoverflow.com/questions/30427882/make-a-timer-using-setinterval
@@ -48,21 +49,34 @@ class Game extends Component {
 
   // Função para adicionar a classe correta ou incorreta ao botão clicado
 
-  handleClick = () => {
+  handleClick = ({ target }) => {
     this.setState({
       correct: 'correct',
       incorrect: 'incorrect',
+    }, () => {
+      const { resultsIndex, seconds } = this.state;
+      const { questions, dispatch } = this.props;
+      const { results } = questions;
+      console.log(results[resultsIndex]);
+      console.log(results[resultsIndex].difficulty);
+      if (results[resultsIndex].correct_answer === target.value) {
+        dispatch(calculaScore(
+          Number(seconds),
+          results[resultsIndex].difficulty.toString(),
+        ));
+      }
     });
   };
 
   // Função para embaralhar as respostas e colocar no state
 
   shuffleAnswers() {
+    const { resultsIndex } = this.state;
     const { questions } = this.props;
     const { results } = questions;
 
     if (results && results.length > 0) {
-      const firstQuestion = results[0];
+      const firstQuestion = results[resultsIndex];
 
       // constante com as respostas embaralhadas, recebe o retorno da função shuffleArray que recebe um array com as respostas incorretas e a resposta correta
 
@@ -128,6 +142,7 @@ class Game extends Component {
                   ? correct : incorrect }
                 onClick={ this.handleClick }
                 disabled={ disabled }
+                value={ answer }
               >
                 {answer}
               </button>
