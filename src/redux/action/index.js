@@ -71,6 +71,8 @@ export const fetchToken = () => (dispatch) => {
     });
 };
 
+// função que calcula o score
+
 export const calculaScore = (seconds, difficulty) => (dispatch) => {
   let valueScore = 0;
   const valorAcerto = 10;

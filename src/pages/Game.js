@@ -47,25 +47,28 @@ class Game extends Component {
     }
   }
 
+  // função que dispara action de soma do score
+  scoreSom = (target) => {
+    const { resultsIndex, seconds } = this.state;
+    const { questions, dispatch } = this.props;
+    const { results } = questions;
+    console.log(results[resultsIndex]);
+    console.log(results[resultsIndex].difficulty);
+    if (results[resultsIndex].correct_answer === target.value) {
+      dispatch(calculaScore(
+        Number(seconds),
+        results[resultsIndex].difficulty.toString(),
+      ));
+    }
+  };
+
   // Função para adicionar a classe correta ou incorreta ao botão clicado
 
   handleClick = ({ target }) => {
     this.setState({
       correct: 'correct',
       incorrect: 'incorrect',
-    }, () => {
-      const { resultsIndex, seconds } = this.state;
-      const { questions, dispatch } = this.props;
-      const { results } = questions;
-      console.log(results[resultsIndex]);
-      console.log(results[resultsIndex].difficulty);
-      if (results[resultsIndex].correct_answer === target.value) {
-        dispatch(calculaScore(
-          Number(seconds),
-          results[resultsIndex].difficulty.toString(),
-        ));
-      }
-    });
+    }, this.scoreSom(target));
   };
 
   // Função para embaralhar as respostas e colocar no state
@@ -162,6 +165,7 @@ class Game extends Component {
         <p data-testid="header-player-name">{name}</p>
         <p data-testid="header-score">{score}</p>
         {content}
+        {correct && <button data-testid="btn-next">Next</button>}
       </header>
     );
   }
