@@ -182,12 +182,13 @@ class Game extends Component {
         <p data-testid="header-score">{score}</p>
         {(seconds <= inicialSeconds) && content}
         {correct
-        && <button
-          data-testid="btn-next"
-          onClick={ this.nextQuestion }
-        >
-          Next
-        </button>}
+        && (
+          <button
+            data-testid="btn-next"
+            onClick={ this.nextQuestion }
+          >
+            Next
+          </button>)}
       </header>
     );
   }
