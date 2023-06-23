@@ -22,13 +22,14 @@ class Login extends Component {
   };
 
   handleClick = async () => {
-    const { dispatch, history } = this.props;
-    dispatch(fetchToken());
+    const { history } = this.props;
     history.push('/game');
   };
 
   render() {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    dispatch(fetchToken());
+
     return (
       <div>
         <input
@@ -49,14 +50,12 @@ class Login extends Component {
           disabled={ !this.buttonDisabled() }
         >
           Play
-
         </button>
         <button
           onClick={ () => history.push('/settings') }
           data-testid="btn-settings"
         >
           Settings
-
         </button>
       </div>
     );
