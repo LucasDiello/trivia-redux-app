@@ -1,3 +1,5 @@
+import md5 from 'crypto-js/md5';
+
 export const NAME_LOGIN = 'NAME_LOGIN';
 export const EMAIL_LOGIN = 'EMAIL_LOGIN';
 export const REQUEST = 'REQUEST';
@@ -30,6 +32,14 @@ export const logout = () => {
   return {
     type: LOGOUT,
   };
+};
+
+// função gravatar
+
+export const fetchGravatar = (hash) => {
+  const hashConvertido = md5(hash).toString();
+  const retornoApi = `https://www.gravatar.com/avatar/${hashConvertido}`;
+  return retornoApi;
 };
 
 // função que faz a requisição da API das perguntas

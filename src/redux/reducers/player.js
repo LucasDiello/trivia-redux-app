@@ -13,18 +13,12 @@ const loginReducer = (state = INITIAL_STATE, action) => {
   case NAME_LOGIN:
     return {
       ...state,
-      Player: {
-        ...state.Player,
-        name: action.name,
-      },
+      name: action.name,
     };
   case EMAIL_LOGIN:
     return {
       ...state,
-      Player: {
-        ...state.Player,
-        gravatarEmail: action.email,
-      },
+      gravatarEmail: action.email,
     };
   default:
     return state;

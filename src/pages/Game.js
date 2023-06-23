@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchQuestions, logout } from '../redux/action';
+import { fetchGravatar, fetchQuestions, logout } from '../redux/action';
 
 class Game extends Component {
   state = {
@@ -89,7 +89,7 @@ class Game extends Component {
   }
 
   render() {
-    const { questions } = this.props;
+    const { questions, player: { name, score, gravatarEmail } } = this.props;
     const { results } = questions;
     const { correct, incorrect, seconds, shuffledAnswers, disabled } = this.state;
     const TOKEN_EXPIRED = 3;
@@ -139,9 +139,13 @@ class Game extends Component {
 
     return (
       <header>
-        <img data-testid="header-profile-picture" alt="img" />
-        <p data-testid="header-player-name" />
-        <p data-testid="header-score">0</p>
+        <img
+          alt="img"
+          src={ fetchGravatar(gravatarEmail) }
+          data-testid="header-profile-picture"
+        />
+        <p data-testid="header-player-name">{name}</p>
+        <p data-testid="header-score">{score}</p>
         {content}
       </header>
     );
@@ -151,6 +155,7 @@ class Game extends Component {
 const mapStateToProps = (state) => ({
   token: state.token,
   questions: state.requestQuestions.questions,
+  player: { ...state.player },
 });
 
 Game.propTypes = {
@@ -161,6 +166,11 @@ Game.propTypes = {
   questions: PropTypes.shape({
     response_code: PropTypes.number,
     results: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  }).isRequired,
+  player: PropTypes.shape({
+    name: PropTypes.string,
+    score: PropTypes.number,
+    gravatarEmail: PropTypes.string,
   }).isRequired,
 };
 
