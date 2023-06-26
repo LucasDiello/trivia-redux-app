@@ -4,6 +4,16 @@ import PropTypes from 'prop-types';
 import { fetchGravatar } from '../redux/action';
 
 class Feedback extends Component {
+  handleClick = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
+
+  handleClickRanking = () => {
+    const { history } = this.props;
+    history.push('/ranking');
+  };
+
   render() {
     const { name, score, gravatarEmail, assertions } = this.props;
     const lowAssertions = 3;
@@ -28,6 +38,19 @@ class Feedback extends Component {
 
         </div>
         <textarea data-testid="feedback-text" />
+        <button
+          onClick={ this.handleClick }
+          data-testid="btn-play-again"
+        >
+          Play Again
+
+        </button>
+        <button
+          data-testid="btn-ranking"
+          onClick={ this.handleClickRanking }
+        >
+          Ranking
+        </button>
       </header>
     );
   }
@@ -38,6 +61,9 @@ const mapStateToProps = (state) => ({
 });
 
 Feedback.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   gravatarEmail: PropTypes.string.isRequired,
