@@ -21,6 +21,12 @@ class Feedback extends Component {
             ? <p>Could be better...</p> : <p>Well Done!</p> }
 
         </h2>
+        <div className="status">
+          <h1>Status:   </h1>
+          <p data-testid="feedback-total-score">{score}</p>
+          <p data-testid="feedback-total-question">{assertions}</p>
+
+        </div>
         <textarea data-testid="feedback-text" />
       </header>
     );

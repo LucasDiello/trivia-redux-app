@@ -51,6 +51,21 @@ body {
   border: 3px solid red;
 }
 
+.status {
+  align-items: center;
+  display: flex;
+}
+
+.status > h1 {
+  font-size: 30px;
+  margin: 10px;
+}
+
+.status > p {
+  margin: 20px;
+}
+
+
 @keyframes shake {
 
   10%, 90% {
