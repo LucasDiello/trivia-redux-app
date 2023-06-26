@@ -6,6 +6,7 @@ export const REQUEST = 'REQUEST';
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const LOGOUT = 'LOGOUT';
 export const SCORE_SOM = 'SCORE_SOM';
+export const ASSERTIONS_SOM = 'ASSERTIONS_SOM';
 
 export const nameLogin = (name) => ({
   type: NAME_LOGIN,
@@ -38,6 +39,11 @@ export const logout = () => {
 export const scoreSom = (score) => ({
   type: SCORE_SOM,
   score,
+});
+
+export const assertionsSom = (assertions) => ({
+  type: ASSERTIONS_SOM,
+  assertions,
 });
 
 // função gravatar

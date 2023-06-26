@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { calculaScore, fetchGravatar, fetchQuestions, logout } from '../redux/action';
+import { assertionsSom,
+  calculaScore, fetchGravatar, fetchQuestions, logout } from '../redux/action';
 
 class Game extends Component {
   state = {
@@ -57,6 +58,7 @@ class Game extends Component {
         Number(seconds),
         results[resultsIndex].difficulty.toString(),
       ));
+      dispatch(assertionsSom(1));
     }
   };
 

@@ -5,7 +5,8 @@ import { fetchGravatar } from '../redux/action';
 
 class Feedback extends Component {
   render() {
-    const { name, score, gravatarEmail } = this.props;
+    const { name, score, gravatarEmail, assertions } = this.props;
+    const lowAssertions = 3;
     return (
       <header>
         <img
@@ -15,6 +16,11 @@ class Feedback extends Component {
         />
         <p data-testid="header-player-name">{name}</p>
         <p data-testid="header-score">{score}</p>
+        <h2 data-testid="feedback-text">
+          { assertions < lowAssertions
+            ? <p>Could be better...</p> : <p>Well Done!</p> }
+
+        </h2>
         <textarea data-testid="feedback-text" />
       </header>
     );
@@ -29,5 +35,6 @@ Feedback.propTypes = {
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   gravatarEmail: PropTypes.string.isRequired,
+  assertions: PropTypes.number.isRequired,
 };
 export default connect(mapStateToProps)(Feedback);
