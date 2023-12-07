@@ -44,7 +44,6 @@ class Game extends Component {
     }
   }
 
-  // função que dispara action de soma do score
   scoreSom = (target) => {
     const { resultsIndex, seconds } = this.state;
     const { questions, dispatch } = this.props;
@@ -90,8 +89,6 @@ class Game extends Component {
     if (results && results.length > 0) {
       const firstQuestion = results[resultsIndex];
 
-      // constante com as respostas embaralhadas, recebe o retorno da função shuffleArray que recebe um array com as respostas incorretas e a resposta correta
-
       const shuffledAnswers = this.shuffleArray([
         ...firstQuestion.incorrect_answers,
         firstQuestion.correct_answer,
@@ -133,7 +130,6 @@ class Game extends Component {
       content = (
         <>
           <div>
-            <p>{seconds}</p>
             <p data-testid="question-category">{firstQuestion.category}</p>
             <p data-testid="question-text">{firstQuestion.question}</p>
           </div>
@@ -159,16 +155,27 @@ class Game extends Component {
         </>
       );
     }
-
+    const { history } = this.props;
     return (
       <header>
-        <img
-          alt="img"
-          src={ fetchGravatar(gravatarEmail) }
-          data-testid="header-profile-picture"
-        />
-        <p data-testid="header-player-name">{name}</p>
-        <p data-testid="header-score">{score}</p>
+        {seconds === 0 && history.push('/feedback')}
+        <div className="game-container">
+          <img
+            alt="img"
+            src={ fetchGravatar(gravatarEmail) }
+            data-testid="header-profile-picture"
+          />
+          <div className="game-timer">
+            <p data-testid="header-player-name">{name}</p>
+            <p data-testid="header-score">
+              Points:
+              {score}
+            </p>
+          </div>
+          <div className="timer">
+            <p>{seconds}</p>
+          </div>
+        </div>
         {(seconds <= inicialSeconds) && content}
         {correct
         && (

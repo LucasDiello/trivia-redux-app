@@ -26,21 +26,21 @@ class Feedback extends Component {
         />
         <p data-testid="header-player-name">{name}</p>
         <p data-testid="header-score">{score}</p>
+        <div className="status">
         <h2 data-testid="feedback-text">
           { assertions < lowAssertions
             ? <p>Could be better...</p> : <p>Well Done!</p> }
 
         </h2>
-        <div className="status">
           <h1>Status:   </h1>
           <p data-testid="feedback-total-score">{score}</p>
           <p data-testid="feedback-total-question">{assertions}</p>
 
         </div>
-        <textarea data-testid="feedback-text" />
         <button
           onClick={ this.handleClick }
           data-testid="btn-play-again"
+          className='btn-feed'
         >
           Play Again
 
@@ -48,6 +48,7 @@ class Feedback extends Component {
         <button
           data-testid="btn-ranking"
           onClick={ this.handleClickRanking }
+          className='btn-feed'
         >
           Ranking
         </button>
