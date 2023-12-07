@@ -46,15 +46,11 @@ export const assertionsSom = (assertions) => ({
   assertions,
 });
 
-// função gravatar
-
 export const fetchGravatar = (hash) => {
   const hashConvertido = md5(hash).toString();
   const retornoApi = `https://www.gravatar.com/avatar/${hashConvertido}`;
   return retornoApi;
 };
-
-// função que faz a requisição da API das perguntas
 
 export const fetchQuestions = (token) => async (dispatch) => {
   try {
@@ -66,8 +62,6 @@ export const fetchQuestions = (token) => async (dispatch) => {
   }
 };
 
-// função que faz a requisição da API do token
-
 export const fetchToken = () => (dispatch) => {
   fetch('https://opentdb.com/api_token.php?command=request')
     .then((response) => response.json())
@@ -76,8 +70,6 @@ export const fetchToken = () => (dispatch) => {
       dispatch(requestToken(data.token));
     });
 };
-
-// função que calcula o score
 
 export const calculaScore = (seconds, difficulty) => (dispatch) => {
   let valueScore = 0;

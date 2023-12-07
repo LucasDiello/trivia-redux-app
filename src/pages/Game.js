@@ -14,8 +14,6 @@ class Game extends Component {
     resultsIndex: 0,
   };
 
-  // Caso queiram saber mais sobre o timer https://stackoverflow.com/questions/30427882/make-a-timer-using-setinterval
-
   componentDidMount() {
     const { dispatch } = this.props;
     const token = localStorage.getItem('token');
@@ -39,8 +37,6 @@ class Game extends Component {
     }, duration);
   }
 
-  // Função para atualizar o state caso haja alteração nas perguntas// o valor anterior de questions era [] e agora é um objeto, tive que adptar a condição por conta do ciclo de vida e tempo de chamada da API;
-
   componentDidUpdate(prevProps) {
     const { questions } = this.props;
     if (questions !== prevProps.questions) {
@@ -61,8 +57,6 @@ class Game extends Component {
       dispatch(assertionsSom(1));
     }
   };
-
-  // Função para adicionar a classe correta ou incorreta ao botão clicado
 
   handleClick = ({ target }) => {
     this.setState({
@@ -89,7 +83,6 @@ class Game extends Component {
     }), () => this.shuffleAnswers());
   };
 
-  // Função para embaralhar as respostas e colocar no state
   shuffleAnswers() {
     const { resultsIndex } = this.state;
     const { questions } = this.props;
@@ -110,8 +103,6 @@ class Game extends Component {
     }
   }
 
-  // Caso queiram entender melhor a função de embaralhar https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-
   shuffleArray(array) {
     const newArray = [...array];
     for (let index = newArray.length - 1; index > 0; index -= 1) {
@@ -129,15 +120,11 @@ class Game extends Component {
     const TOKEN_EXPIRED = 3;
     const inicialSeconds = 30;
 
-    // condição para verificar se o token expirou
-
     if (questions.response_code === TOKEN_EXPIRED) {
       const { history, dispatch } = this.props;
       dispatch(logout());
       history.push('/');
     }
-
-    // conteudo da pagina/ motivo de estar em uma variavel é por conta do tempo de resposta da API
 
     let content = null;
     if (results && results.length > 0) {
