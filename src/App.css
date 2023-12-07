@@ -84,3 +84,19 @@ body {
     transform: translate3d(4px, 0, 0);
   }
 }
+
+
+.div-ranking {
+  display: flex;
+  padding: 20px;
+  list-style: none;
+
+}
+
+#root > div > header > div > div > ul > li {
+  list-style: none;
+}
+
+.div-ranking > p{
+  margin-left: 20px;
+}

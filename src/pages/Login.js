@@ -40,12 +40,14 @@ class Login extends Component {
           onChange={ this.handleChange }
           type="text"
           name="name"
+          placeholder="Nome"
         />
         <input
           data-testid="input-gravatar-email"
           onChange={ this.handleChange }
           type="email"
           name="email"
+          placeholder="Email"
         />
         <button
           onClick={ this.handleClick }
