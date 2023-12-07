@@ -53,9 +53,9 @@ Bem-vindo ao nosso jogo de perguntas e respostas baseado no famoso Trivia! Este 
 ## Autores
 - [@LucasDiello](https://github.com/LucasDiello) 📄
 
-- [@alessandro]([https://github.com/GuiiFernandes](https://github.com/alessandro98nascimento) 📄
+- [@alessandro](https://github.com/alessandro98nascimento) 📄
 
-- [@zacca]([https://github.com/kauancarniel](https://github.com/zacca22) 📄
+- [@zacca](https://github.com/zacca22) 📄
 
 Esperamos que você se divirta jogando o nosso Trivia! Boa sorte e que a sabedoria esteja a seu favor! 🎉
 
