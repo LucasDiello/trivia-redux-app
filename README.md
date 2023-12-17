@@ -14,7 +14,6 @@ Bem-vindo ao nosso jogo de perguntas e respostas baseado no famoso Trivia! Este 
 - Acesse a página do jogo para responder a uma série de perguntas.
 - Escolha uma das respostas disponíveis para cada pergunta.
 - Marque a resposta antes que o contador de tempo atinja zero; caso contrário, a resposta será considerada errada.
-
 ### 3. Tela de Score
 
 - Após responder a 5 perguntas, você será redirecionado para a tela de score.
