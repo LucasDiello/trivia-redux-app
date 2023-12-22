@@ -3,6 +3,7 @@
 Bem-vindo ao nosso jogo de perguntas e respostas baseado no famoso Trivia! Este projeto foi desenvolvido em grupo, utilizando **React** e **Redux** para criar uma experiência envolvente e desafiadora. Por favor, siga as instruções abaixo para aproveitar ao máximo o jogo.
 
 ## Funcionalidades Principais
+
 ### 1. Autenticação
 
 - Faça **login** no jogo para acessar todas as funcionalidades.
