@@ -59,4 +59,4 @@ Bem-vindo ao nosso jogo de perguntas e respostas baseado no famoso Trivia! Este 
 
 Esperamos que você se divirta jogando o nosso Trivia! Boa sorte e que a sabedoria esteja a seu favor! 🎉
 
-# Caso interesse, link para acessar: https://app-trivia-game.netlify.app/
+## Caso interesse, link para acessar: https://app-trivia-game.netlify.app/
